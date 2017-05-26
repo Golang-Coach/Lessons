@@ -1,4 +1,4 @@
-### Azure Cosmos DB: Build a MongoDB API console app with Golang and the Azure
+# Azure Cosmos DB: Build a MongoDB API console app with Golang and the Azure
 portal
 
 Azure Cosmos DB is Microsoft’s globally distributed multi-model database
@@ -94,23 +94,34 @@ of features under a very simple API following standard Go idioms.
 
 Azure Cosmos DB uses latest version of MongoDB v3.2.0. with SSL enabled.
 
+To check MongoDb version go to Azure portal and get MongoDB Shell Tab and copy
+mongo command
+
+![](https://cdn-images-1.medium.com/max/800/1*voTl_TbS7Wuld2Q4CBLFXQ.png)
+<span class="figcaption_hack">Azure Cosmos MongoDB Shell</span>
+
+Open command prompt and run command. Once the connection is established, run
+below command to check database version.
+
+    db.version()
+
 ![](https://cdn-images-1.medium.com/max/800/1*OJwDs_lG45z_K3rzw2_RuQ.png)
 
 Officially, mgo does not support MongoDB 3.2 version. There is solution to
 ignore server certificate validation by mgo. Please refer blog [Connect to
 MongoDB 3.2 on Compose from
 Golang](https://www.compose.com/articles/connect-to-mongo-3-2-on-compose-from-golang/)
-by [Hays Hutton](ps://www.compose.com/articles/author/hays-hutton/)
+by [Hays Hutton](about:invalid#zSoyz)
 
 To get started we have to configure transport layer security (tls). We have to
 make sure that client Certificate Authority ignore SSL validation. While this
-does open up some attack vectors, it is vastly superior to no SSL. Here are the
-comments directly from the source code of the tls.Config struct for the
+does open up some attack vectors, it is is better than no SSL. Here are the
+comments directly from the source code of the **tls.Config** struct for the
 particular boolean we need to set:
 
 
 The following code snippet to connect with MongoDB with GO app. DialInfo holds
-options for establishing a session with a MongoDB cluster. 
+options for establishing a session with a MongoDB cluster.
 
     tlsConfig := &tls.Config{}
 
@@ -157,7 +168,7 @@ options for establishing a session with a MongoDB cluster.
     session.SetSafe(&mgo.Safe{})
 
 **mgo.Dial()** method is used when there is no SSL connection and for SSL
-connection **mgo.DialWithInfo()** method is required. 
+connection **mgo.DialWithInfo()** method is required.
 
 Instance of **DialWIthInfo{}** object will be used to create session object.
 Once session is established, we can access collection by following code snippet
@@ -236,3 +247,11 @@ Azure Cosmos DB supports deleting JSON documents.
 
 Please have a look at the entire source code at
 [GitHub](https://github.com/Golang-Coach/Lessons/tree/master/CosmosDBAccess).
+
+* [Golang](https://medium.com/tag/golang?source=post)
+* [Go](https://medium.com/tag/go?source=post)
+* [Azure](https://medium.com/tag/azure?source=post)
+* [Azure Cosmos Db](https://medium.com/tag/azure-cosmos-db?source=post)
+* [Mongo](https://medium.com/tag/mongo?source=post)
+
+### [Durgaprasad Budhwani](https://medium.com/@durgaprasadbudhwani)
