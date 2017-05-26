@@ -168,6 +168,16 @@ Once session is established, we can access collection by following code snippet
 
 #### 1. Create Document
 
+    // Model
+    type Package struct {
+    	Id bson.ObjectId  `bson:"_id,omitempty"`
+    	FullName      string
+    	Description   string
+    	StarsCount    int
+    	ForksCount    int
+    	LastUpdatedBy string
+    }
+
     // insert Document in collection
     err = collection.Insert(&Package{
         FullName:"react",
