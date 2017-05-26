@@ -224,6 +224,5 @@ Azure Cosmos DB supports deleting JSON documents.
 
 ### Get the complete Golang tutorial solution
 
-If you didn’t have time to complete the steps in this tutorial, or just want to
-download the code, you can get it from
-[GitHub](https://github.com/Golang-Coach/Lessons).
+Please have a look at the entire source code at
+[GitHub](https://github.com/Golang-Coach/Lessons/tree/master/CosmosDBAccess).
