@@ -39,7 +39,7 @@ func main() {
 		Timeout:  60 * time.Second,
 		Database: "golang-couch",                                                                             // It can be anything
 		Username: "golang-couch",                                                                             // Username
-		Password: "02lgiHBWQpRndXAp8SfYhOfe25kVO5DgD57ONNEE5C2gtT3C8Wp3CgxGblyxl9dfuANxFwYSgTiRbob5Iar3Ow==", // PASSWORD
+		Password: "Password from azure cosmos db connection string", // PASSWORD
 	}
 
 	dialInfo.DialServer = func(serverAddress *mgo.ServerAddr) (net.Conn, error) {
