@@ -110,6 +110,53 @@ For API methods that require HTTP Basic Authentication, use the.
 refer below code snippet to get repository information. **Get() ***returns
 pointer to repository.*
 
+```go
+package main
+
+import (
+	"github.com/google/go-github/github"
+	"golang.org/x/oauth2"
+	"context"
+	"fmt"
+	"os"
+)
+
+// Model
+type Package struct {
+	FullName      string
+	Description   string
+	StarsCount    int
+	ForksCount    int
+	LastUpdatedBy string
+}
+
+func main() {
+	context := context.Background()
+	tokenService := oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: "<!-- Your API Keys -->"},
+	)
+	tokenClient := oauth2.NewClient(context, tokenService)
+
+	client := github.NewClient(tokenClient)
+
+	repo, _, err := client.Repositories.Get(context, "Golang-Coach", "Lessons")
+
+	if err != nil {
+		fmt.Printf("Problem in getting repository information %v\n", err)
+		os.Exit(1)
+	}
+
+	pack := &Package{
+		FullName: *repo.FullName,
+		Description: *repo.Description,
+		ForksCount: *repo.ForksCount,
+		StarsCount: *repo.StargazersCount,
+	}
+
+	fmt.Printf("%+v\n", pack)
+}
+```
+
 ### Github last commit information of specific repository
 
 **client.Repositories.ListCommits(ctx context.Context, owner, repo string, opt
@@ -130,18 +177,54 @@ you list of commits by descending order. At a time, this api will return maximum
 
 To get last commit information, take first item from result as shown below:
 
-<span class="figcaption_hack">Get last commit information</span>
+```go
+commitInfo, _, err := client.Repositories.ListCommits(context, "Golang-Coach", "Lessons", nil)
+
+if err != nil {
+  fmt.Printf("Problem in commit information %v\n", err)
+  os.Exit(1)
+}
+
+fmt.Printf("%+v\n", commitInfo[0]) // Last commit information
+```
 
 ### Get README.MD Content
 
 **client.Repositories.GetReadme(ctx context.Context, owner, repo string, opt
 *RepositoryContentGetOptions) (*RepositoryContent, *Response, error) ***api will
 be used to get README.MD information. Please refer below code snippet:*
+```go
+// repository readme information
+readme, _, err := client.Repositories.GetReadme(context, "facebook", "react-native", nil)
+if err != nil {
+	fmt.Printf("Problem in getting readme information %v\n", err)
+	return
+}
+
+// get content
+content, err := readme.GetContent()
+if err != nil {
+	fmt.Printf("Problem in getting readme content %v\n", err)
+	return
+}
+
+fmt.Println(content)
+```
 
 ### Get Rate Limit Information
 
 **client.RateLimits(ctx context.Context) (*RateLimits, *Response, error) **api
 will be used to get rate limit information. Example as follows:
+```go
+// Get Rate limit information
+rateLimit, _, err := client.RateLimits(context)
+if err != nil {
+  fmt.Printf("Problem in getting rate limit information %v\n", err)
+  return
+}
+
+fmt.Printf("Limit: %d \nRemaining %d \n", rateLimit.Core.Limit, rateLimit.Core.Remaining ) // Last rate limit information
+```
 
 ### Get the complete Golang tutorial solution
 
