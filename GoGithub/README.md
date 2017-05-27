@@ -1,10 +1,10 @@
-### Playing with Github API with GO-GITHUB Golang library
+# Playing with Github API with GO-GITHUB Golang library
 
 G[o-github](https://github.com/google/go-github) library is a client library
 that provides an easy way to interact with the [GitHub
 API](http://developer.github.com/v3/). This library is being initially developed
 for an internal application at Google, so API methods will likely be implemented
-in the order that they are needed by that application. We  can track the status
+in the order that they are needed by that application. We can track the status
 of implementation in [this Google
 spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0ApoVX4GOiXr-dGNKN1pObFh6ek1DR2FKUjBNZ1FmaEE&usp=sharing).
 [API documentation](https://developer.github.com/v3/) is hosted on
@@ -40,30 +40,25 @@ reduced the default rate limit for unauthenticated requests. Unauthenticated
 requests will be limited to 60 per hour. To enjoy the default rate limit of
 5,000 requests per hour, you’ll need
 to[authenticate](https://developer.github.com/v3/#authentication) via Basic Auth
-or OAuth. 
+or OAuth.
 
 ### How to get Github OAuth2 Access Token
 
 1.  Login to [Github.com](https://github.com/)
 1.  Go to user’s settings
 
-![](https://cdn-images-1.medium.com/max/1600/1*aiSTFC7RGAywLKtHXaGssQ.png)
 <span class="figcaption_hack">User settings link</span>
 
 3. Go to [Personal Access Token](https://github.com/settings/tokens) and click
 on Generate new token
 
-![](https://cdn-images-1.medium.com/max/1600/1*ndxUbS2Sj8QAinXv1DGw4A.png)
 <span class="figcaption_hack">Generate new token</span>
 
 4. Fill Token description and check **repo **checkbox.
 
-![](https://cdn-images-1.medium.com/max/1600/1*Dz8J5P07ze8W3XanVQzGVw.png)
 <span class="figcaption_hack">Token required information and scopes</span>
 
 5. Get/Copy token. This token will be used to Go-Github library
-
-![](https://cdn-images-1.medium.com/max/1600/1*RAejQC2JzcGP3oz-b6j15Q.png)
 
 ### Setting up your application
 
@@ -77,7 +72,7 @@ or Atom). For this article, I will use Gogland editor.
 
 ### Go-Github Client
 
-Following code snippet will be used to get Go-Github client<br> <br> 
+Following code snippet will be used to get Go-Github client
 
     import "github.com/google/go-github/github"
 
@@ -153,4 +148,10 @@ will be used to get rate limit information. Example as follows:
 Please have a look at the entire source code at
 [GitHub](https://github.com/Golang-Coach/Lessons/tree/master/GoGithub).
 
-<br> 
+* [Golang](https://medium.com/tag/golang?source=post)
+* [Github](https://medium.com/tag/github?source=post)
+* [Github Api](https://medium.com/tag/github-api?source=post)
+* [Gogithub](https://medium.com/tag/gogithub?source=post)
+* [Go](https://medium.com/tag/go?source=post)
+
+### [Durgaprasad Budhwani](https://medium.com/@durgaprasadbudhwani)
