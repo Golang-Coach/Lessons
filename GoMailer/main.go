@@ -28,24 +28,32 @@ func main() {
 	cwd, _ := os.Getwd()
 	var err error
 	// Get newsletter html template in string format
-	htmlContent, err := GetTemplateContent(filepath.Join(cwd, "templates", "./newsletter.html"), news)
+	htmlContent, err := ParseTemplate(filepath.Join(cwd, "templates", "./newsletter.html"), news)
 	if err != nil {
 		log.Fatalln(err)
 	}
 	fmt.Println(htmlContent)
 
 	// Get newsletter text template in string format
-	textContent, err := GetTemplateContent(filepath.Join(cwd, "templates", "./newsletter.tmpl"), news)
+	textContent, err := ParseTemplate(filepath.Join(cwd, "templates", "./newsletter.tmpl"), news)
 	if err != nil {
 		log.Fatalln(err)
 	}
 	fmt.Println(textContent)
 
+	mailRequest := NewMailRequest(
+		"no-reply@golang.coach",
+		"Golang Coach Newsletter",
+		htmlContent,
+		textContent,
+		[]string {"durgaprasad.budhwani@gmail.com"},
+	)
+
 	// send mail
-	resp, err := SendMail("Golang Coach Newsletter", htmlContent, textContent, "durgaprasad.budhwani@gmail.com")
-	if err != nil {
+	ok, err := mailRequest.SendMail()
+	if !ok {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Resp: %s\n", resp)
+	fmt.Println("Mail has been sent")
 }
