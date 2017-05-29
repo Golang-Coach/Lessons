@@ -5,7 +5,7 @@ import (
 	"html/template"
 )
 
-// GetTemplateContent returns parsed template with data in string format
+// ParseTemplate returns parsed template with data in string format
 // If there is an error, it will return response with error data
 func ParseTemplate(templateFileName string, data interface{}) (content string, err error) {
 
