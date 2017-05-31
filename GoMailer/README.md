@@ -24,7 +24,7 @@ In this tutorials, we’ll cover:
 
 1.  Basic knowledge of [GO ](https://golang.org/)language
 1.  IDE — [Gogland](https://www.jetbrains.com/go/) by Jetbrains or [Visual Studio
-Code](https://code.visualstudio.com/) by Mircosoft or [Atom](https://atom.io/)
+Code](https://code.visualstudio.com/) by Microsoft or [Atom](https://atom.io/)
 
 ### How to get Mailgun Private and Public Key
 
