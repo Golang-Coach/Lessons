@@ -22,31 +22,16 @@ type Package struct {
 }
 
 func main() {
-
-    tlsConfig := &tls.Config{}
-
-    // InsecureSkipVerify controls whether a client verifies the
-    // server's certificate chain and host name.
-    // If InsecureSkipVerify is true, TLS accepts any certificate
-    // presented by the server and any host name in that certificate.
-    // In this mode, TLS is susceptible to man-in-the-middle attacks.
-    // This should be used only for testing.
-    tlsConfig.InsecureSkipVerify = true
-
     // DialInfo holds options for establishing a session with a MongoDB cluster.
     dialInfo := &mgo.DialInfo{
         Addrs:    []string{"golang-couch.documents.azure.com:10255"}, // Get HOST + PORT
         Timeout:  60 * time.Second,
-        Database: "golang-couch",                                                                             // It can be anything
-        Username: "golang-couch",                                                                             // Username
-        Password: "Password from azure cosmos db connection string", // PASSWORD
-    }
-
-    dialInfo.DialServer = func(serverAddress *mgo.ServerAddr) (net.Conn, error) {
-        fmt.Println(serverAddress.String());
-        connection, err := tls.Dial("tcp", serverAddress.String(), tlsConfig)
-        return connection, err
-
+        Database: "golang-coach",                                                                             // It can be anything
+        Username: "golang-coach",                                                                             // Username
+        Password: "Database connect password", // PASSWORD
+        DialServer: func(addr *mgo.ServerAddr) (net.Conn, error) {
+            return tls.Dial("tcp", addr.String(), &tls.Config{})
+        },
     }
 
     // Create a session which maintains a pool of socket connections
