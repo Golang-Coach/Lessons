@@ -5,7 +5,7 @@ import (
 	"context"
 	"golang.org/x/oauth2"
 	. "github.com/google/go-github/github"
-	. "Lessons/GoBDD/services"
+	. "github/Golang-Coach/Lessons/GoBDD/services"
 )
 func main() {
 
