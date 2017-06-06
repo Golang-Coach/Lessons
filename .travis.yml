@@ -7,7 +7,9 @@ before_install:
  - go get golang.org/x/tools/cmd/cover
  - go get github.com/axw/gocov/gocov
  - go get github.com/mattn/goveralls
+ - go get github.com/onsi/ginkgo/ginkgo
+ - go get github.com/modocache/gover
 
 script:
- - go test -v -covermode=count -coverprofile=profile.cov ./...
- - $HOME/gopath/bin/goveralls -repotoken FJWuSQHhKLOFItSb8Wwvf2uT3HYsqggjg
+ - $HOME/gopath/bin/ginkgo -r  -cover -coverpkg=./GoBDD/... -trace -race
+ - $HOME/gopath/bin/goveralls -coverprofile=gover.coverprofile -repotoken FJWuSQHhKLOFItSb8Wwvf2uT3HYsqggjg
