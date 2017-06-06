@@ -3,7 +3,7 @@ package services
 import (
 	. "github.com/google/go-github/github"
 	"context"
-	. "github/Golang-Coach/Lessons/GoBDD/models"
+	. "github.com/Golang-Coach/Lessons/GoBDD/models"
 )
 
 type IRepositoryServices interface {

@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github/Golang-Coach/Lessons/GoBDD/mocks"
+	"github.com/Golang-Coach/Lessons/GoBDD/mocks"
 	"context"
 	. "github.com/smartystreets/goconvey/convey"
 	. "github.com/google/go-github/github"
