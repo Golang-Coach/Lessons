@@ -12,4 +12,5 @@ before_install:
 
 script:
  - $HOME/gopath/bin/ginkgo -r  -cover -coverpkg=./GoBDD/... -trace -race
+ - $HOME/gopath/bin/gover
  - $HOME/gopath/bin/goveralls -coverprofile=gover.coverprofile -repotoken FJWuSQHhKLOFItSb8Wwvf2uT3HYsqggjg
