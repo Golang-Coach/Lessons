@@ -9,7 +9,7 @@ import (
 	"errors"
 )
 
-func TestSpec(t *testing.T) {
+func TestGithub(t *testing.T) {
 	Convey("Github API", t, func() {
 		Convey("Should return repository information", func() {
 			backgroundContext := context.Background()
@@ -30,7 +30,7 @@ func TestSpec(t *testing.T) {
 			So(pack.ForksCount, ShouldEqual, starCount)
 		})
 
-		Convey("should return error when failed to retrieve  repository information", func() {
+		Convey("Should return error when failed to retrieve  repository information", func() {
 			backgroundContext := context.Background()
 			repositoryServices := new(mocks.IRepositoryServices)
 			github := NewGithub(repositoryServices, backgroundContext)
