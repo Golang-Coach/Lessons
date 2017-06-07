@@ -1,42 +1,47 @@
 package services
 
 import (
-	. "github.com/google/go-github/github"
 	"context"
-	. "github.com/Golang-Coach/Lessons/GoBDD/models"
+
+	"github.com/Golang-Coach/Lessons/GoBDD/models"
+	"github.com/google/go-github/github"
 )
 
+// IRepositoryServices : This interface will be used to provide light coupling between github.RepositoryServices and its consumer
 type IRepositoryServices interface {
-	Get(ctx context.Context, owner, repo string) (*Repository, *Response, error)
+	Get(ctx context.Context, owner, repo string) (*github.Repository, *github.Response, error)
 }
 
+// IGithub : This interface will be used to provide light coupling between GithubAPI and its consumer
 type IGithub interface {
-	GetPackageRepoInfo(owner string, repositoryName string) (*Package, error)
+	GetPackageRepoInfo(owner string, repositoryName string) (*models.Package, error)
 }
 
+// Github : This struct will be used to get Github related information
 type Github struct {
 	repositoryServices IRepositoryServices
-	context context.Context
+	context            context.Context
 }
 
-func NewGithub(repositoryServices IRepositoryServices, context context.Context) Github {
+// NewGithub : It will intialized Github class
+func NewGithub(context context.Context, repositoryServices IRepositoryServices) Github {
 	return Github{
 		repositoryServices: repositoryServices,
-		context: context,
+		context:            context,
 	}
 }
 
-func (service *Github) GetPackageRepoInfo(owner string, repositoryName string) (*Package, error) {
+// GetPackageRepoInfo : This reciver provide Github related repository inforamtion
+func (service *Github) GetPackageRepoInfo(owner string, repositoryName string) (*models.Package, error) {
 	repo, _, err := service.repositoryServices.Get(service.context, owner, repositoryName)
 	if err != nil {
 		return nil, err
 	}
-	pack := &Package{
+	pack := &models.Package{
 		FullName:    *repo.FullName,
 		Description: *repo.Description,
-		ForksCount:   *repo.ForksCount,
+		ForksCount:  *repo.ForksCount,
 		StarsCount:  *repo.StargazersCount,
 	}
 	return pack, nil
 }
-

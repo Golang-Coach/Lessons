@@ -2,15 +2,15 @@ package models
 
 import "time"
 
-type Package struct{
-	FullName string
-	Description string
-	StarsCount int
-	ForksCount int
-	UpdatedAt time.Time
+// Package : here you tell us what Salutation is
+type Package struct {
+	FullName      string
+	Description   string
+	StarsCount    int
+	ForksCount    int
+	UpdatedAt     time.Time
 	LastUpdatedBy string
-	ReadMe string
-	Tags []string
-	Categories []string
+	ReadMe        string
+	Tags          []string
+	Categories    []string
 }
-
