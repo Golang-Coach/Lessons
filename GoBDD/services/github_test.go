@@ -13,7 +13,7 @@ func TestGithubAPI(t *testing.T) {
 	Convey("Should return repository information", t, func() {
 		backgroundContext := context.Background()
 		repositoryServices := new(mocks.IRepositoryServices)
-		github := NewGithub(repositoryServices, backgroundContext)
+		github := NewGithub(backgroundContext, repositoryServices)
 
 		fullName := "ABC"
 		starCount := 10
@@ -32,7 +32,7 @@ func TestGithubAPI(t *testing.T) {
 	Convey("Should return error when failed to retrieve  repository information", t, func() {
 		backgroundContext := context.Background()
 		repositoryServices := new(mocks.IRepositoryServices)
-		github := NewGithub(repositoryServices, backgroundContext)
+		github := NewGithub(backgroundContext, repositoryServices)
 		repositoryServices.On("Get", backgroundContext, "golang-coach", "Lessons").Return(nil, nil, errors.New("Error has been occurred"))
 		_, err := github.GetPackageRepoInfo("golang-coach", "Lessons")
 		So(err, ShouldNotBeEmpty)
