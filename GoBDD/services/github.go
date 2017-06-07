@@ -31,7 +31,7 @@ func NewGithub(context context.Context, repositoryServices IRepositoryServices) 
 	}
 }
 
-// GetPackageRepoInfo : This reciver provide Github related repository inforamtion
+// GetPackageRepoInfo : This receiver provide Github related repository information
 func (service *Github) GetPackageRepoInfo(owner string, repositoryName string) (*models.Package, error) {
 	repo, _, err := service.repositoryServices.Get(service.context, owner, repositoryName)
 	if err != nil {
